@@ -1,0 +1,30 @@
+---
+- name: Restart HTTPD if Postfix is Running
+  hosts: sf-prod-web
+  tasks:
+    - name: Populate service facts
+      service_facts:
+
+    - debug:
+        #var: ansible_facts.services
+       # msg: 
+        #  - "{{ item }}"
+      register: result
+      loop: "{{ lookup('dict', ansible_facts.services) }}"
+
+    #- copy:
+    #    content: "{{ result }}"
+    #    dest: /home/admin_tasks/src/x.json
+    #     delegate_to: localhost
+    #- name: Print all available facts
+    #  ansible.builtin.debug:
+    
+    #- debug:
+    #  register: fact
+
+
+    - template:
+        src: /home/admin_tasks/index.html.j2
+        dest: /home/admin_tasks/src/index.html
+      delegate_to: localhost
+

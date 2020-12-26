@@ -1,0 +1,19 @@
+[myself]
+localhost
+127.0.0.1 ansible_connection=local
+
+[intranetweb]
+sf-prod-web
+sf-stage-web
+
+[internetweb]
+sf-prod-web.tmweb.ru
+
+[wiki]
+docuwiki
+
+[web:children]
+intranetweb
+internetweb
+
+
